@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Feliz Cumpleaños</title>
+	<link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+	<!DOCTYPE html>
+	<html lang="es">
+
+	<head>
+		<meta charset="UTF-8">
+		<title> Happy birthday Lau</title>
+		<link rel="stylesheet" href="./style.css">
+
+	</head>
+
+	<body>
+
+		<div class="card">
+			<div class="imgBox">
+				<div class="bark"></div>
+				<img src="https://image.ibb.co/fYzTrb/lastofus.jpg">
+			</div>
+			<div class="details">
+				<h4 class="color3">POEMA</h2>
+					<!--h4 class="color2 margin"></h3> -->
+					<p class="poema">Deseo que este nuevo año te regale momentos donde puedas amarte tal como eres,
+						sin miedo a mostrarte, sin disfrazar tu luz.
+						Esa luz que nace de ti y que, incluso con los ojos cerrados, sigue brillando. ✨
+
+						Que tus noches sean suaves como un susurro al oído,
+						donde el amor no tenga prisa y el tiempo se detenga solo para verte sonreír.
+						Que todos te miren y entiendan, sin palabras, lo que tu corazón intenta decir.
+						Y que sientas que todo llega en su momento, como una melodía que se reconoce sin esfuerzo.
+
+						Que en tus días más tranquilos haya risas que te digan “siéntate junto a mí”,
+						y conversaciones que se sientan como hogar.
+						Que los sueños te lleven a ese lago en el cielo,
+						donde nada duele y todo parece posible.
+
+						Que florezcas incluso entre espinas,
+						que tu amor te encuentre en el instante menos esperado,
+						y que la vida te haga vibrar como una canción animal igual como intensa, libre, tuya.
+
+						Que sigas jugando entre la ternura y la locura,
+						dejando que la seducción de vivir te envuelva sin miedo,
+						y si alguna vez decides escapar de lo que pesa,
+						lo hagas como una prófuga del dolor, corriendo hacia tu paz.
+
+						Y cuando el silencio te abrace, recuerda: tus ojos nunca mienten,
+						la belleza es un arma y tu alma es su mejor reflejo.
+						Susurra el deseo, corazón delator,
+						porque dentro de ti late todo lo que aún no has dicho,
+						todo lo que el mundo espera escuchar.
+
+						Que la vida te devuelva en sonrisas todo lo que entregas,
+						y que siempre recuerdes....eres bella, por dentro y por fuera,
+						una melodía viva entre tantas voces,
+						la más sincera entre todas las canciones del mundo. 🎶</p>
+					<p class="text-right">¡Besos y abrazos!</p>
+					<p class="text-right">Yess ♥</p>
+			</div>
+		</div>
+
+	</body>
+<audio id="bg-music" src="Cry Baby.mp3" loop></audio>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const music = document.getElementById('bg-music');
+
+    // Reproduce la música apenas el usuario llega desde un clic
+    const playMusic = () => {
+      music.play().then(() => {
+        console.log('🎵 Música reproduciéndose');
+      }).catch(err => {
+        console.log('⚠️ No se pudo reproducir automáticamente:', err);
+      });
+    };
+
+    // Si llega desde un enlace, intentará iniciar
+    playMusic();
+
+    // Por seguridad, si el navegador bloquea la reproducción,
+    // se activa al primer clic o toque en cualquier parte
+    document.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+      }
+    }, { once: true });
+  });
+</script>
+</body>
+</html>

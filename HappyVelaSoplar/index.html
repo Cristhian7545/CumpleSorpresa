@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>Khofash's Birthday</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+    <link rel="icon" href="Fly Bats logo.png">
+
+</head>
+<body>
+    <h1>
+      Haz tu deseo y sopla con el corazón✨…</h1>
+     <div class="glow" id="glow"></div>
+     <div id="candle">
+       <div class="stripe"></div>
+       <div class="stripe"></div>
+       <div class="stripe"></div>
+       <div class="stripe"></div>
+       <div class="stripe"></div>
+       <div id="top">
+         <div class="smoke"></div>
+         <div class="smoke"></div>
+         <div class="smoke"></div>
+         <div id="knot"></div>
+         <div class="burn" id="flame"></div>
+       </div>
+     </div>
+</body>
+
+<audio id="bg-music" src="Magic.mp3" loop></audio>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const music = document.getElementById('bg-music');
+
+    // Reproduce la música apenas el usuario llega desde un clic
+    const playMusic = () => {
+      music.play().then(() => {
+        console.log('🎵 Música reproduciéndose');
+      }).catch(err => {
+        console.log('⚠️ No se pudo reproducir automáticamente:', err);
+      });
+    };
+
+    // Si llega desde un enlace, intentará iniciar
+    playMusic();
+
+    // Por seguridad, si el navegador bloquea la reproducción,
+    // se activa al primer clic o toque en cualquier parte
+    document.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+      }
+    }, { once: true });
+  });
+</script>
+</html>

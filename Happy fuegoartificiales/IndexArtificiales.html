@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎉 Feliz Cumpleaños 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: radial-gradient(ellipse at bottom, #0a0a2a 0%, #000 100%);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Texto principal */
+    h1 {
+      position: absolute;
+      top: 45%;
+      width: 100%;
+      text-align: center;
+      font-size: 4em;
+      color: #fff8b0;
+      text-shadow: 0 0 25px #ffef88, 0 0 50px #ffef88;
+      opacity: 0;
+      animation: aparecer 4s ease forwards;
+      animation-delay: 2s;
+      letter-spacing: 4px;
+    }
+
+    @keyframes aparecer {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Estrellas de fondo */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="fireworks"></canvas>
+  <h1 id="texto"></h1>
+
+  <script>
+    // --- Animar el texto letra por letra ---
+    const texto = "¡Feliz cumpleaños!";
+    const h1 = document.getElementById("texto");
+    let i = 0;
+
+    function escribir() {
+      if (i < texto.length) {
+        h1.textContent += texto.charAt(i);
+        i++;
+        setTimeout(escribir, 150);
+      }
+    }
+    setTimeout(escribir, 2000);
+
+    // --- Fuegos artificiales ---
+    const canvas = document.getElementById('fireworks');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = window.innerWidth;
+    let h = canvas.height = window.innerHeight;
+    window.onresize = () => {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    };
+
+    const fireworks = [];
+
+    class Particle {
+      constructor(x, y, color, speed, angle, life) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.speed = speed;
+        this.angle = angle;
+        this.life = life;
+        this.alpha = 1;
+      }
+      update() {
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed + 0.5; // caída
+        this.alpha -= 0.015;
+        this.life--;
+      }
+      draw() {
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function createFirework() {
+      const x = Math.random() * w;
+      const y = Math.random() * (h / 2);
+      const colors = ['#ffcc00', '#ff6699', '#66ccff', '#99ff66', '#ff9966'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const particles = [];
+      for (let i = 0; i < 60; i++) {
+        const angle = (Math.PI * 2 * i) / 60;
+        const speed = Math.random() * 4 + 1;
+        particles.push(new Particle(x, y, color, speed, angle, 100));
+      }
+      fireworks.push(particles);
+    }
+
+    function animate() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+      ctx.fillRect(0, 0, w, h);
+
+      for (let i = 0; i < fireworks.length; i++) {
+        const particles = fireworks[i];
+        for (let j = 0; j < particles.length; j++) {
+          const p = particles[j];
+          p.update();
+          p.draw();
+          if (p.life <= 0 || p.alpha <= 0) {
+            particles.splice(j, 1);
+            j--;
+          }
+        }
+        if (particles.length === 0) {
+          fireworks.splice(i, 1);
+          i--;
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+
+    setInterval(createFirework, 800);
+    animate();
+  </script>
+</body>
+<audio id="bg-music" src="Corazón Delator.mp3" loop></audio>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const music = document.getElementById('bg-music');
+
+    // Reproduce la música apenas el usuario llega desde un clic
+    const playMusic = () => {
+      music.play().then(() => {
+        console.log('🎵 Música reproduciéndose');
+      }).catch(err => {
+        console.log('⚠️ No se pudo reproducir automáticamente:', err);
+      });
+    };
+
+    // Si llega desde un enlace, intentará iniciar
+    playMusic();
+
+    // Por seguridad, si el navegador bloquea la reproducción,
+    // se activa al primer clic o toque en cualquier parte
+    document.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+      }
+    }, { once: true });
+  });
+</script>
+</html>

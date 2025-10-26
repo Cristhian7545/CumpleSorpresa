@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opciones</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #ff69b4;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* --- VIDEO DE FONDO --- */
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    /* --- CARD --- */
+    .card {
+      position: relative;
+      background-color: rgba(255, 255, 255, 0.13);
+      border-radius: 20px;
+      padding: 25px;
+      max-width: 600px;
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      border: 3px solid transparent;
+      background-clip: padding-box;
+    }
+
+    /* --- Borde tipo aurora --- */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 4px;
+      background: linear-gradient(270deg,
+          #ff007f, #ffae00, #00ff9d, #009dff, #b000ff, #ff00f7, #ff007f);
+      background-size: 600% 600%;
+      animation: aurora 8s ease infinite;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    @keyframes aurora {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* --- VIDEO DENTRO DEL CARD --- */
+    video {
+      width: 480px;
+      height: 270px;
+      object-fit: cover;
+      border: none;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      margin: 10px 0;
+    }
+
+    .botones {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .fila {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      width: 100%;
+    }
+
+    /* --- BOTONES --- */
+    a {
+      background-color: #ff69b4;
+      color: white;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-size: 16px;
+      transition: 0.4s;
+      min-width: 120px;
+      text-align: center;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(270deg,
+          #ff007f, #ffae00, #00ff9d, #009dff, #b000ff, #ff00f7, #ff007f);
+      background-size: 600% 600%;
+      animation: aurora 6s linear infinite;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: -1;
+      border-radius: 10px;
+    }
+
+    a:hover::before {
+      opacity: 1;
+    }
+
+    a:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 15px rgba(99, 255, 161, 0.6);
+    }
+
+    /* --- Imagen circular tipo botón --- */
+/* --- Botón de imagen circular --- */
+.marrano-boton {
+  display: inline-block;
+  margin-top: 20px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  transition: transform 0.3s ease;
+}
+
+.marrano-boton img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* 🔹 Borde fino */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.marrano-boton:hover img {
+  transform: scale(1.15);
+  
+}
+/* 💖 Corrige el hover rosado heredado en el botón del marrano */
+.marrano-boton::before {
+  display: none !important;
+}
+
+.marrano-boton:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+
+  </style>
+</head>
+
+<body>
+  <!-- 🎬 VIDEO DE FONDO -->
+  <video class="video-bg" autoplay muted loop>
+    <source src="FondoEstrella.mp4" type="video/mp4">
+    Tu navegador no soporta el video de fondo.
+  </video>
+
+  <div class="card">
+    <video autoplay muted loop>
+      <source src="DaftPunk.mp4" type="video/mp4">
+      Tu navegador no soporta el elemento de video.
+    </video>
+
+    <h1>Elige una opción 💖</h1>
+
+    <div class="botones">
+      <div class="fila">
+        <a href="Feliz-cumplea-os-main/index.html">Carta</a>
+        <a href="Happy fuegoartificiales/IndexArtificiales.html">Luces</a>
+        <a href="TulipanesBlancos/index.html">Flores</a>
+      </div>
+
+      <div class="fila">
+        <a href="HappyVelaSoplar/index.html">Sopla</a>
+        <a href="PraderaDeFlores/dist/index.html">Pradera</a>
+      </div>
+    </div>
+
+    <!-- 🔘 BOTÓN DE IMAGEN (más pequeño y con borde fino) -->
+    <a href="./Cartadino/dist/Marrano.html" class="marrano-boton">
+      <img src="Marrano.jpeg" alt="Botón Marrano" >
+    </a>
+
+  </div>
+
+  <audio id="bg-music" src="One More Time.mp3" loop></audio>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const music = document.getElementById('bg-music');
+
+      const playMusic = () => {
+        music.play().catch(err => {
+          console.log('⚠️ No se pudo reproducir automáticamente:', err);
+        });
+      };
+
+      playMusic();
+
+      document.addEventListener('click', () => {
+        if (music.paused) {
+          music.play();
+        }
+      }, { once: true });
+    });
+  </script>
+</body>
+
+</html>
